@@ -9,7 +9,7 @@
 
 雹は、Androidアプリを凍結するための自由ソフトウェアです。[GitHub Releases](https://github.com/aistra0528/Hail/releases)
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.aistra.hail/)
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.aistra.hailalt/)
 
 <img src="fastlane/metadata/android/zh-CN/images/phoneScreenshots/1.png" width="32%" /> <img src="fastlane/metadata/android/zh-CN/images/phoneScreenshots/2.png" width="32%" /> <img src="fastlane/metadata/android/zh-CN/images/phoneScreenshots/3.png" width="32%" />
 
@@ -74,14 +74,14 @@
 adbコマンドを発行します：
 
 ```shell
-adb shell dpm set-device-owner com.aistra.hail/.receiver.DeviceAdminReceiver
+adb shell dpm set-device-owner com.aistra.hailalt/.receiver.DeviceAdminReceiver
 ```
 
 デバイス所有者が正常に設定された場合、adbは次のメッセージを出力します：
 
 ```
-Success: Device owner set to package com.aistra.hail
-Active admin set to component {com.aistra.hail/com.aistra.hail.receiver.DeviceAdminReceiver}
+Success: Device owner set to package com.aistra.hailalt
+Active admin set to component {com.aistra.hailalt/com.aistra.hailalt.receiver.DeviceAdminReceiver}
 ```
 
 それ以外の場合は、検索エンジンでメッセージを検索してください。
@@ -97,7 +97,7 @@ Active admin set to component {com.aistra.hail/com.aistra.hail.receiver.DeviceAd
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <permissions>
-    <privapp-permissions package="com.aistra.hail">
+    <privapp-permissions package="com.aistra.hailalt">
         <permission name="android.permission.PACKAGE_USAGE_STATS"/>
         <permission name="android.permission.FORCE_STOP_PACKAGES"/>
         <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
@@ -122,11 +122,11 @@ android_app_import {
     presigned: true,
     preprocessed: true,
 
-    required: ["privapp-permissions_com.aistra.hail.xml"]
+    required: ["privapp-permissions_com.aistra.hailalt.xml"]
 }
 
 prebuilt_etc {
-    name: "privapp-permissions_com.aistra.hail.xml",
+    name: "privapp-permissions_com.aistra.hailalt.xml",
     src: "privapp-permissions.xml",
     sub_dir: "permissions",
 }
@@ -169,30 +169,30 @@ adb shell am start -a action -e key value
 
 `action`は次の定数のいずれかです：
 
-- `com.aistra.hail.action.LAUNCH`
+- `com.aistra.hailalt.action.LAUNCH`
   ：ターゲットアプリを解凍して起動します。解凍されている場合は、直接起動します。`key="package"` `value="com.package.name"`
 
-- `com.aistra.hail.action.FREEZE`
+- `com.aistra.hailalt.action.FREEZE`
   ：ターゲットアプリを凍結します。ホームにチェックされている必要があります。`key="package"` `value="com.package.name"`
 
-- `com.aistra.hail.action.UNFREEZE`：ターゲットアプリを解凍します。`key="package"` `value="com.package.name"`
+- `com.aistra.hailalt.action.UNFREEZE`：ターゲットアプリを解凍します。`key="package"` `value="com.package.name"`
 
-- `com.aistra.hail.action.FREEZE_TAG`
+- `com.aistra.hailalt.action.FREEZE_TAG`
   ：ターゲットタグ内のすべての非ホワイトリストアプリを凍結します。`key="tag"` `value="タグ名"`
 
-- `com.aistra.hail.action.UNFREEZE_TAG`：ターゲットタグ内のすべてのアプリを解凍します。`key="tag"` `value="タグ名"`
+- `com.aistra.hailalt.action.UNFREEZE_TAG`：ターゲットタグ内のすべてのアプリを解凍します。`key="tag"` `value="タグ名"`
 
-- `com.aistra.hail.action.FREEZE_ALL`：ホームのすべてのアプリを凍結します。`extra`は必要ありません。
+- `com.aistra.hailalt.action.FREEZE_ALL`：ホームのすべてのアプリを凍結します。`extra`は必要ありません。
 
-- `com.aistra.hail.action.UNFREEZE_ALL`：ホームのすべてのアプリを解凍します。`extra`は必要ありません。
+- `com.aistra.hailalt.action.UNFREEZE_ALL`：ホームのすべてのアプリを解凍します。`extra`は必要ありません。
 
-- `com.aistra.hail.action.FREEZE_NON_WHITELISTED`：ホームのすべての非ホワイトリストアプリを凍結します。`extra`は必要ありません。
+- `com.aistra.hailalt.action.FREEZE_NON_WHITELISTED`：ホームのすべての非ホワイトリストアプリを凍結します。`extra`は必要ありません。
 
-- `com.aistra.hail.action.FREEZE_AUTO`：ホームのアプリを自動的に凍結します。`extra`は必要ありません。
+- `com.aistra.hailalt.action.FREEZE_AUTO`：ホームのアプリを自動的に凍結します。`extra`は必要ありません。
 
-- `com.aistra.hail.action.LOCK`：画面をロックします。`extra`は必要ありません。
+- `com.aistra.hailalt.action.LOCK`：画面をロックします。`extra`は必要ありません。
 
-- `com.aistra.hail.action.LOCK_FREEZE`：ホームのすべてのアプリを凍結し、画面をロックします。`extra`は必要ありません。
+- `com.aistra.hailalt.action.LOCK_FREEZE`：ホームのすべてのアプリを凍結し、画面をロックします。`extra`は必要ありません。
 
 or use following `schema`:
 

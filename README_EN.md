@@ -10,7 +10,7 @@
 Hail is a free-as-in-freedom software to freeze Android
 apps. [GitHub Releases](https://github.com/aistra0528/Hail/releases)
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.aistra.hail/)
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.aistra.hailalt/)
 
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" width="32%" /> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" width="32%" /> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" width="32%" />
 
@@ -77,13 +77,13 @@ background.
 Issue adb command:
 
 ```shell
-adb shell dpm set-device-owner com.aistra.hail/.receiver.DeviceAdminReceiver
+adb shell dpm set-device-owner com.aistra.hailalt/.receiver.DeviceAdminReceiver
 ```
 
 In response, adb prints this message if device owner has been successfully set:
 
 ```
-Success: Device owner set to package com.aistra.hail. Active admin set to component {com.aistra.hail/com.aistra.hail.receiver.DeviceAdminReceiver}
+Success: Device owner set to package com.aistra.hailalt. Active admin set to component {com.aistra.hailalt/com.aistra.hailalt.receiver.DeviceAdminReceiver}
 ```
 
 Search the message by search engine otherwise.
@@ -99,7 +99,7 @@ The following privapp-permissions is required:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <permissions>
-    <privapp-permissions package="com.aistra.hail">
+    <privapp-permissions package="com.aistra.hailalt">
         <permission name="android.permission.PACKAGE_USAGE_STATS"/>
         <permission name="android.permission.FORCE_STOP_PACKAGES"/>
         <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
@@ -124,11 +124,11 @@ android_app_import {
     presigned: true,
     preprocessed: true,
 
-    required: ["privapp-permissions_com.aistra.hail.xml"]
+    required: ["privapp-permissions_com.aistra.hailalt.xml"]
 }
 
 prebuilt_etc {
-    name: "privapp-permissions_com.aistra.hail.xml",
+    name: "privapp-permissions_com.aistra.hailalt.xml",
     src: "privapp-permissions.xml",
     sub_dir: "permissions",
 }
@@ -172,29 +172,29 @@ adb shell am start -a action -e key value
 
 `action` can be one of the following constants:
 
-- `com.aistra.hail.action.LAUNCH`: Unfreeze and launch target app. If it is unfrozen, it will launch directly.
+- `com.aistra.hailalt.action.LAUNCH`: Unfreeze and launch target app. If it is unfrozen, it will launch directly.
   `key="package"` `value="com.package.name"`
 
-- `com.aistra.hail.action.FREEZE`: Freeze target app. It must be checked at Home. `key="package"`
+- `com.aistra.hailalt.action.FREEZE`: Freeze target app. It must be checked at Home. `key="package"`
   `value="com.package.name"`
 
-- `com.aistra.hail.action.UNFREEZE`: Unfreeze target app. `key="package"` `value="com.package.name"`
+- `com.aistra.hailalt.action.UNFREEZE`: Unfreeze target app. `key="package"` `value="com.package.name"`
 
-- `com.aistra.hail.action.FREEZE_TAG`: Freeze all non-whitelisted apps in the target tag. `key="tag"` `value="Tag name"`
+- `com.aistra.hailalt.action.FREEZE_TAG`: Freeze all non-whitelisted apps in the target tag. `key="tag"` `value="Tag name"`
 
-- `com.aistra.hail.action.UNFREEZE_TAG`: Unfreeze all apps in the target tag. `key="tag"` `value="Tag name"`
+- `com.aistra.hailalt.action.UNFREEZE_TAG`: Unfreeze all apps in the target tag. `key="tag"` `value="Tag name"`
 
-- `com.aistra.hail.action.FREEZE_ALL`: Freeze all apps at Home. `extra` is not necessary.
+- `com.aistra.hailalt.action.FREEZE_ALL`: Freeze all apps at Home. `extra` is not necessary.
 
-- `com.aistra.hail.action.UNFREEZE_ALL`: Unfreeze all apps at Home. `extra` is not necessary.
+- `com.aistra.hailalt.action.UNFREEZE_ALL`: Unfreeze all apps at Home. `extra` is not necessary.
 
-- `com.aistra.hail.action.FREEZE_NON_WHITELISTED`: Freeze all non-whitelisted apps at Home. `extra` is not necessary.
+- `com.aistra.hailalt.action.FREEZE_NON_WHITELISTED`: Freeze all non-whitelisted apps at Home. `extra` is not necessary.
 
-- `com.aistra.hail.action.FREEZE_AUTO`: Auto freeze apps at Home. `extra` is not necessary.
+- `com.aistra.hailalt.action.FREEZE_AUTO`: Auto freeze apps at Home. `extra` is not necessary.
 
-- `com.aistra.hail.action.LOCK`: Lock screen. `extra` is not necessary.
+- `com.aistra.hailalt.action.LOCK`: Lock screen. `extra` is not necessary.
 
-- `com.aistra.hail.action.LOCK_FREEZE`: Freeze all apps at Home and lock screen. `extra` is not necessary.
+- `com.aistra.hailalt.action.LOCK_FREEZE`: Freeze all apps at Home and lock screen. `extra` is not necessary.
 
 or use following `schema`:
 
