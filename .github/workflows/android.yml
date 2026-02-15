@@ -1,39 +1,41 @@
 name: Android CI
 
 on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '**.md'
-      - 'fastlane/**'
-      - '.github/**'
-      - '!.github/workflows/android.yml'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ !startsWith(github.event.head_commit.message, '[skip ci]') && github.repository_owner == 'aistra0528' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
+
       - name: Build with Gradle
         run: |
-          echo "commit=$(echo ${{ github.sha }} | cut -c-7)" >> $GITHUB_ENV
-          touch signing.properties
-          echo storeFile=../keystore.jks >> signing.properties
-          echo storePassword=${{ secrets.KEYSTORE_PASSWORD }} >> signing.properties
-          echo keyAlias=${{ secrets.KEYSTORE_ALIAS }} >> signing.properties
-          echo keyPassword=${{ secrets.KEYSTORE_ALIAS_PASSWORD }} >> signing.properties
-          echo ${{ secrets.KEYSTORE }} | base64 --decode > keystore.jks
           ./gradlew assembleRelease
+
+      - name: Sign with testkey
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y apksigner
+
+          wget https://raw.githubusercontent.com/aosp-mirror/platform_build/master/target/product/security/testkey.pk8
+          wget https://raw.githubusercontent.com/aosp-mirror/platform_build/master/target/product/security/testkey.x509.pem
+
+          unsigned_apk=$(ls app/build/outputs/apk/release/*-unsigned.apk)
+          apksigner sign \
+            --key testkey.pk8 \
+            --cert testkey.x509.pem \
+            --out app-release-signed.apk \
+            "$unsigned_apk"
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Hail@${{ env.commit }}
-          path: app/build/outputs/apk/release/*.apk
+          path: app-release-signed.apk
