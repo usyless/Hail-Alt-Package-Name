@@ -1,5 +1,9 @@
 简体中文 | [English](README_EN.md) | [日本語](README_JP.md)
 
+# Applying alt app name mods:
+- In vscode, replace all `.hail`, caps sensitive, match full word, with `.<desired package name>`
+- Then rename `app/src/main/kotlin/com/aistra/hail` to the desired name
+
 # 雹 Hail
 
 [![Android CI status](https://github.com/aistra0528/Hail/workflows/Android%20CI/badge.svg)](https://github.com/aistra0528/Hail/actions)
